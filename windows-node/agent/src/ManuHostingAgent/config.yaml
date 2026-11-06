@@ -1,0 +1,106 @@
+﻿# Manu Hosting Windows Node Agent Configuration
+# This file is copied to the agent installation directory
+
+# Control Plane (Debian) Connection
+control_plane:
+  url: "https://manu-hosting.de"
+  api_port: 8443
+  node_id: "dl580-node-01"
+  node_token: "CHANGE_ME_GENERATE_SECURE_TOKEN"
+  verify_ssl: true
+
+# Agent Settings
+agent:
+  install_dir: "D:\ManuHosting"
+  servers_dir: "D:\ManuHosting\servers"
+  backups_dir: "D:\ManuHosting\backups"
+  temp_dir: "D:\ManuHosting\temp"
+  log_dir: "D:\ManuHosting\logs"
+  java_path: "java"
+  
+  # Heartbeat interval in seconds
+  heartbeat_interval: 30
+  
+  # Command polling interval in seconds
+  command_poll_interval: 5
+  
+  # Resource reporting interval in seconds
+  resource_report_interval: 60
+  
+  # Idle shutdown default timeout in seconds (0 = disabled)
+  idle_shutdown_default: 60
+  
+  # Max allowed idle shutdown timeout in seconds
+  max_idle_shutdown: 900
+
+# Minecraft Server Defaults
+minecraft:
+  default_java_version: "21"
+  default_ram: 2048
+  default_cpu: 2
+  default_disk: 10240
+  max_players: 20
+  
+  # Supported Java versions
+  java_versions:
+    - "21"
+    - "17"
+    - "11"
+    - "8"
+
+# Process Management
+process:
+  # Graceful shutdown timeout in seconds
+  shutdown_timeout: 30
+  
+  # Force kill after graceful timeout
+  force_kill_after: 10
+  
+  # JVM default arguments
+  jvm_args:
+    - "-Xms{ram}M"
+    - "-Xmx{ram}M"
+    - "-XX:+UseG1GC"
+    - "-XX:+ParallelRefProcEnabled"
+    - "-XX:MaxGCPauseMillis=200"
+    - "-XX:+UnlockExperimentalVMOptions"
+    - "-XX:+DisableExplicitGC"
+    - "-XX:+AlwaysPreTouch"
+    - "-XX:G1NewSizePercent=30"
+    - "-XX:G1MaxNewSizePercent=40"
+    - "-XX:G1HeapRegionSize=8M"
+    - "-XX:G1ReservePercent=20"
+    - "-XX:G1HeapWastePercent=5"
+    - "-XX:G1MixedGCCountTarget=4"
+    - "-XX:InitiatingHeapOccupancyPercent=15"
+    - "-XX:G1MixedGCLiveThresholdPercent=90"
+    - "-XX:G1RSetUpdatingPauseTimePercent=5"
+    - "-XX:SurvivorRatio=32"
+    - "-Dusing.aikars.flags=https://mcflags.emc.gs"
+    - "-Daikars.new.flags=true"
+
+# Backup Settings
+backup:
+  compression: "zip"
+  max_backups_per_server: 10
+  exclude_patterns:
+    - "*.log"
+    - "*.tmp"
+    - "cache/*"
+    - "plugins/dynmap/*"
+    - "logs/*"
+    - "crash-reports/*"
+
+# Network
+network:
+  port_range_start: 25565
+  port_range_end: 25665
+  bind_address: "0.0.0.0"
+
+# Security
+security:
+  # Allowed IPs for direct agent API access (empty = all)
+  allowed_ips: []
+  
+  # Require mutual TLS for control plane communication
+  mutual_tls: false

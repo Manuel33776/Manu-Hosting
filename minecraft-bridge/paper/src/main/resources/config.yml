@@ -1,0 +1,44 @@
+﻿# Manu Hosting Bridge Configuration
+# This file is auto-generated on first run. Modify values as needed.
+
+# Platform connection settings
+platform:
+  # Base URL of the Manu Hosting platform (Debian control plane)
+  # Example: https://panel.manu-hosting.de
+  url: "https://panel.manu-hosting.de"
+  
+  # Secret key for bridge authentication (must match platform configuration)
+  # Generate a secure random string and configure it on both sides
+  bridge-secret: ""
+
+# Node identification
+node:
+  # Unique identifier for this Windows node (matches platform node configuration)
+  # Example: dl580-01
+  id: "dl580-01"
+
+# Server identification (auto-generated on first run if empty)
+server:
+  # Unique UUID for this Minecraft server instance
+  # Leave empty to auto-generate
+  uuid: ""
+
+# Bridge behavior
+bridge:
+  # Enable/disable the bridge entirely
+  enabled: true
+  
+  # Heartbeat interval in seconds (sends server status to platform)
+  heartbeat-interval: 30
+  
+  # Minimum interval between inventory updates per player in seconds
+  inventory-update-interval: 5
+
+# Anti-cheat settings
+anti-cheat:
+  # Enable anti-cheat monitoring and alerts
+  enabled: true
+
+# Debug mode (verbose logging)
+debug: false
+

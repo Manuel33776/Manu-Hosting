@@ -1,0 +1,22 @@
+name: ManuHostingBridge
+version: 1.0.0
+main: com.manuhosting.bridge.ManuHostingBridge
+api-version: 1.13
+authors: [ManuHosting]
+description: Bridge between Minecraft server and Manu Hosting platform
+website: https://manu-hosting.de
+commands:
+  manubridge:
+    description: Main command for Manu Hosting Bridge
+    usage: /manubridge <reload|status|test>
+    permission: manubridge.admin
+permissions:
+  manubridge.admin:
+    description: Access to bridge admin commands
+    default: op
+  manubridge.reload:
+    description: Reload bridge configuration
+    default: op
+  manubridge.test:
+    description: Test bridge connection
+    default: op

@@ -1,0 +1,32 @@
+﻿[Unit]
+Description=Manu Hosting WebSocket Console Server
+After=network.target mariadb.service nginx.service php8.3-fpm.service
+Wants=mariadb.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/manu-hosting
+Environment=MANU_API_URL=https://panel.manu-hosting.de/api/v1
+Environment=CONSOLE_WS_PORT=8080
+Environment=CONSOLE_WS_HOST=0.0.0.0
+ExecStart=/usr/bin/php /var/www/manu-hosting/bin/console-server.php
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=manu-hosting-console
+
+# Security hardening
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/www/manu-hosting/storage /var/www/manu-hosting/logs
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+[Install]
+WantedBy=multi-user.target
